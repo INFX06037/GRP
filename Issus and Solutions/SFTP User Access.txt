@@ -1,0 +1,16 @@
+Steps for creating Internal SFTP user account:
+
+Connect to the below server:
+
+volinternalsftpvm - 10.50.10.4
+Username - svbue
+Password - Santa@2020
+
+Perform the below commands:
+
+sudo mkdir /sftpusers/chroot/singlesdkuser
+sudo useradd -m singlesdkuser -g sftp
+sudo passwd singlesdkuser
+sudo chown singlesdkuser:sftp /sftpusers/chroot/singlesdkuser/
+sudo chmod 700 /sftpusers/chroot/singlesdkuser/
+sudo systemctl restart ssh

@@ -1,0 +1,15 @@
+How many projects u guys running parllely
+Did u guys changed any thing recently
+Did u deployed any new projects recently
+For how long you guys facing this issue
+Check the cluster error logs using the issue time
+Check the pod event log
+
+
+
+Step1->connect to aks
+Step 2->az aks upgrade --resource-group paas-cmb-nprd-rg --name cmbnprdappaks1 --control-plane-only --no-wait --kubernetes-version 1.31.1
+Step3-az aks nodepool upgrade --resource-group paas-cmb-nprd-rg --cluster-name cmbnprdappaks1 --name cmbnprdnp01 --no-wait --kubernetes-version 1.31.1
+ 
+az aks nodepool upgrade --resource-group paas-cmb-nprd-rg --cluster-name cmbnprdappaks1 --name cmbnprdnp3 --no-wait --kubernetes-version 1.31.1
+

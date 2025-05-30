@@ -1,0 +1,8 @@
+regions=$(aws ec2 describe-regions --query "Regions[*].RegionName" --output text)
+
+for region in $regions; do
+    echo "Checking region: $region"
+    aws ec2 describe-instances --region $region \
+      --query "Reservations[*].Instances[*].{Instance:InstanceId,PublicIp:PublicIpAddress,PrivateIp:PrivateIpAddress}" \
+      --output text | grep '10.210.9.73'  #Replace with your IP
+done

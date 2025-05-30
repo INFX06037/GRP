@@ -1,0 +1,83 @@
+Your request is addressed. We are closing the ticket now. If you face any issue and want to reopen the incident, then please send email to it.cloud@volantetech.com
+
+Thanks,
+Sathish Baskar
+Email: it.cloud@volantetech.com
+
+
+
+
+Tasks:
+=====
+watch this Mandatory video: https://www.youtube.com/watch?v=oekqPr13dQs
+Learn Azure Service bus
+
+Learn Azure Devops pipeline
+
+Check with ram about the goals
+
+Check with Ram and drop a mail for leave
+
+What is muting role and how to use it =  It is a option used to disable the alerts temporarely
+
+Check the pod logs and Event logs for any issue in aks
+
+Get the Azure Master alert list and poc from Shahid
+
+How we are setting, 240 hours for the vms
+
+What access do we need to provide?
+
+Watch the Volpay Saas video
+
+Learn abount linux disk management commands
+
+Learn Azure Redhat Openshift
+==================================================
+AWS s3 Access issue for vijay
+AWS Access Key needed to access for S3 bucket
+
+=============================================================================
+
+
+=====================================================================================
+
+
+============================================================================================
+
+
+====================================================================================
+
+
+====================================================================================
+We are not using express route in our volante env
+=================================================================================
+ 
+
+=================================================================================
+1. Storage Account
+2. Automation Account
+3. VNET,Subnet,Routetable and NSG
+4. Virtual Machines
+5. Log Analytics
+6. Kubernetes
+7. Front Door
+8. DNS Zones
+9. Entra AD
+10. DB
+
+
+
+
+
+dhineshjnu@gmail.com
+Dhiny@123 or Dhiny@12345
+
+
+
+
+
+
+
+
+

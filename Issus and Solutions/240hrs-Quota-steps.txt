@@ -1,0 +1,19 @@
+Steps to Increase the Quota of 240hrs:
+*****************************************
+Login 40 jumpserver with cloud automation credential: cloudautomation & Secure@32!
+
+Open stop nft folder in desktop
+
+Open the project forder (bacnft)
+
+Open and edit the powershell script in the same folder
+
+Edit if ( $Totalhours -gt 240 )
+
+Edit notification hours add 200hrs
+
+Inform ram to modify the smart sheet:
+"ITC0151031 - Modify the running hours from 300 to 240 and notification hours from 280 to 200 in the C:\Users\cloudautomation\Desktop\Stop-NFT\bacnft\bacnft-vms-final on 01-Jun-25"
+
+*****************************************************************************************************
+Note: DB wont come under 240hrs quota

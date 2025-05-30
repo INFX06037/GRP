@@ -1,0 +1,5 @@
+netstat -an | grep 22
+telnet IP 22
+telnet domain 443
+ping -4 ip
+tracert domainname

@@ -1,0 +1,13 @@
+pasnonprod
+logs
+kqlmode
+showmax limit
+copy and paste graph command
+paste modify if needed " total minutes, date& time, URL, less than 1sec"
+run 
+take screenshot
+paste the excel query
+run
+share
+export to csv all columns
+

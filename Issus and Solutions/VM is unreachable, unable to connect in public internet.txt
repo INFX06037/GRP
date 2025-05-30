@@ -1,0 +1,8 @@
+1. VM is unreachable unabler to connect via internet.
+For the above issue, i will do below checks,
+check the subnet is public or private, 
+check the nsg RDP and SSH ports are opened or not, 
+Check VM is running or not, 
+Check Remote management was allowed in the VM or not.
+RDP or SSH service was running or not 
+RBAC was blocking or not

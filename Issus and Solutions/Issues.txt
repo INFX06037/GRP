@@ -1,0 +1,20 @@
+Port Down alert:
+LSB-PRD-Middleware-Infra-Teleport-Port-Down-3022 - lsbprdzkprvm2 = Since it is a middleware ticket, inform MQ team in common group and Drop a mail.
+
+
+PaaS-IVT-UAT2-VolPay-Kubernet-pods-missing-Deployment-Sample -
+
+
+Request for front door logs in USAA NFT environment:
+
+
+Azure VNet Peering Issue Detected:
+
+
+Alert 'ivt-uat2-queue-depth-alert’ was fired = Since it is a middleware ticket, assign it to mq team
+
+
+Alert 'scb-sepa-uat-kafka-alert' was fired = Assign this to middleware team, and open the link take a screenshot of result and inform to cloud infra ops team
+
+
+Azure Monitor alert Corenftaks App insights has reached 10GB daily quota was activated

@@ -1,0 +1,508 @@
+root@paashubansivm1:~# az login
+To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code FM7RF2YZN to authenticate.
+
+Retrieving tenants and subscriptions for the selection...
+Authentication failed against tenant b5b3311d-6fe8-4d27-b9c2-654ac0556818 'volante-internal': AADSTS50076: Due to a configuration change made by your administrator, or because you moved to a new location, you must use multi-factor authentication to access '797f4846-ba00-4fd7-ba43-dac1f8f63013'. Trace ID: 734de685-1657-4491-bdf3-fa389f240000 Correlation ID: 73f7b6d0-01d9-4b71-8a93-0d3213391730 Timestamp: 2025-05-08 13:48:51Z
+If you need to access subscriptions in the following tenants, please use `az login --tenant TENANT_ID`.
+b5b3311d-6fe8-4d27-b9c2-654ac0556818 'volante-internal'
+
+[Tenant and subscription selection]
+
+No     Subscription name    Subscription ID                       Tenant
+-----  -------------------  ------------------------------------  --------------------
+[1]    PAAS-DevTest         254f0a3a-177a-4867-a814-4f76208232b9  Volante Technologies
+[2]    PAAS-Production      21a2128f-093c-431e-ade2-b1f892577ad0  Volante Technologies
+[3] *  Pay-As-You-Go        e1ade081-1977-488c-9025-7de1b7fc2df9  Volante Technologies
+[4]    UBS-Dedicated        0e51fbb1-df4d-4afe-be63-d4e151ce4957  Volante Technologies
+
+The default is marked with an *; the default tenant is 'Volante Technologies' and subscription is 'Pay-As-You-Go' (e1ade081-1977-488c-9025-7de1b7fc2df9).
+
+Select a subscription and tenant (Type a number or Enter for no changes): 1
+
+Tenant: Volante Technologies
+Subscription: PAAS-DevTest (254f0a3a-177a-4867-a814-4f76208232b9)
+
+[Announcements]
+With the new Azure CLI login experience, you can select the subscription you want to use more easily. Learn more about it and its configuration at https://go.microsoft.com/fwlink/?linkid=2271236
+
+If you encounter any problem, please open an issue at https://aka.ms/azclibug
+
+[Warning] The login output has been updated. Please be aware that it no longer displays the full list of available subscriptions by default.
+
+root@paashubansivm1:~# az account set --subscription 254f0a3a-177a-4867-a814-4f76208232b9
+root@paashubansivm1:~# az aks get-credentials --resource-group rg-cbd-preprod-new --name cbdpreprodaks --overwrite-existing
+Merged "cbdpreprodaks" as current context in /root/.kube/config
+root@paashubansivm1:~# kubectl config current-context
+cbdpreprodaks
+root@paashubansivm1:~# az aks update -n cbdpreprodaks -g rg-cbd-preprod-new --attach-acr vp3xcononprodacr1
+AAD role propagation done[############################################]  100.0000%keyvaultid: None, enable_kv: False
+{
+  "aadProfile": {
+    "adminGroupObjectIDs": null,
+    "adminUsers": null,
+    "clientAppId": null,
+    "enableAzureRbac": true,
+    "managed": true,
+    "serverAppId": null,
+    "serverAppSecret": null,
+    "tenantId": "61c32f10-2c7a-499a-bf3b-cb9b2c63cd93"
+  },
+  "addonProfiles": {
+    "azureKeyvaultSecretsProvider": {
+      "config": null,
+      "enabled": false,
+      "identity": null
+    },
+    "azurepolicy": {
+      "config": null,
+      "enabled": false,
+      "identity": null
+    }
+  },
+  "agentPoolProfiles": [
+    {
+      "availabilityZones": null,
+      "capacityReservationGroupId": null,
+      "count": 1,
+      "creationData": null,
+      "currentOrchestratorVersion": "1.31.1",
+      "enableAutoScaling": false,
+      "enableEncryptionAtHost": null,
+      "enableFips": false,
+      "enableNodePublicIp": false,
+      "enableUltraSsd": null,
+      "gpuInstanceProfile": null,
+      "hostGroupId": null,
+      "kubeletConfig": null,
+      "kubeletDiskType": "OS",
+      "linuxOsConfig": null,
+      "maxCount": null,
+      "maxPods": 30,
+      "minCount": null,
+      "mode": "System",
+      "name": "agentpool",
+      "networkProfile": null,
+      "nodeImageVersion": "AKSUbuntu-2204gen2containerd-202504.02.0",
+      "nodeLabels": null,
+      "nodePublicIpPrefixId": null,
+      "nodeTaints": null,
+      "orchestratorVersion": "1.31.1",
+      "osDiskSizeGb": 200,
+      "osDiskType": "Ephemeral",
+      "osSku": "Ubuntu",
+      "osType": "Linux",
+      "podSubnetId": null,
+      "powerState": {
+        "code": "Running"
+      },
+      "provisioningState": "Succeeded",
+      "proximityPlacementGroupId": null,
+      "scaleDownMode": "Delete",
+      "scaleSetEvictionPolicy": null,
+      "scaleSetPriority": null,
+      "spotMaxPrice": null,
+      "tags": {
+        "Customer": "CBD",
+        "Customer Type": "On-prem",
+        "Department": "Prod Support",
+        "Environment": "Preprod",
+        "Stream": "Volpay2x",
+        "Ticket": "ITC0145019"
+      },
+      "type": "VirtualMachineScaleSets",
+      "upgradeSettings": {
+        "drainTimeoutInMinutes": null,
+        "maxSurge": "10%",
+        "nodeSoakDurationInMinutes": null
+      },
+      "vmSize": "Standard_D8s_v3",
+      "vnetSubnetId": "/subscriptions/254f0a3a-177a-4867-a814-4f76208232b9/resourceGroups/cloud_internal/providers/Microsoft.Network/virtualNetworks/cloud-internal-vnet/subnets/cbd-qa-aks-sn",
+      "windowsProfile": null,
+      "workloadRuntime": null
+    }
+  ],
+  "apiServerAccessProfile": null,
+  "autoScalerProfile": null,
+  "autoUpgradeProfile": {
+    "nodeOsUpgradeChannel": "None",
+    "upgradeChannel": "none"
+  },
+  "azureMonitorProfile": {
+    "metrics": {
+      "enabled": true,
+      "kubeStateMetrics": {
+        "metricAnnotationsAllowList": "",
+        "metricLabelsAllowlist": ""
+      }
+    }
+  },
+  "azurePortalFqdn": "cbdpreprodaks-dns-9m7glnoo.portal.hcp.eastus2.azmk8s.io",
+  "currentKubernetesVersion": "1.31.1",
+  "disableLocalAccounts": true,
+  "diskEncryptionSetId": null,
+  "dnsPrefix": "cbdpreprodaks-dns",
+  "enablePodSecurityPolicy": null,
+  "enableRbac": true,
+  "extendedLocation": null,
+  "fqdn": "cbdpreprodaks-dns-9m7glnoo.hcp.eastus2.azmk8s.io",
+  "fqdnSubdomain": null,
+  "httpProxyConfig": null,
+  "id": "/subscriptions/254f0a3a-177a-4867-a814-4f76208232b9/resourcegroups/rg-cbd-preprod-new/providers/Microsoft.ContainerService/managedClusters/cbdpreprodaks",
+  "identity": {
+    "delegatedResources": null,
+    "principalId": "627cbd43-b0d5-4f74-a03d-d10ba925c525",
+    "tenantId": "61c32f10-2c7a-499a-bf3b-cb9b2c63cd93",
+    "type": "SystemAssigned",
+    "userAssignedIdentities": null
+  },
+  "identityProfile": {
+    "kubeletidentity": {
+      "clientId": "7e1a2f6f-63bd-4b86-b8e5-8094025cdbbf",
+      "objectId": "ba79260b-a958-4be3-9f15-1eb2cd0f2e1c",
+      "resourceId": "/subscriptions/254f0a3a-177a-4867-a814-4f76208232b9/resourcegroups/MC_rg-cbd-preprod-new_cbdpreprodaks_eastus2/providers/Microsoft.ManagedIdentity/userAssignedIdentities/cbdpreprodaks-agentpool"
+    }
+  },
+  "ingressProfile": null,
+  "kubernetesVersion": "1.31.1",
+  "linuxProfile": null,
+  "location": "eastus2",
+  "maxAgentPools": 100,
+  "metricsProfile": {
+    "costAnalysis": {
+      "enabled": false
+    }
+  },
+  "name": "cbdpreprodaks",
+  "networkProfile": {
+    "dnsServiceIp": "10.0.0.10",
+    "ipFamilies": [
+      "IPv4"
+    ],
+    "loadBalancerProfile": {
+      "allocatedOutboundPorts": null,
+      "backendPoolType": "nodeIPConfiguration",
+      "effectiveOutboundIPs": [
+        {
+          "id": "/subscriptions/254f0a3a-177a-4867-a814-4f76208232b9/resourceGroups/MC_rg-cbd-preprod-new_cbdpreprodaks_eastus2/providers/Microsoft.Network/publicIPAddresses/3a1e5d0f-c80d-4981-9f4f-6638960ac95e",
+          "resourceGroup": "MC_rg-cbd-preprod-new_cbdpreprodaks_eastus2"
+        }
+      ],
+      "enableMultipleStandardLoadBalancers": null,
+      "idleTimeoutInMinutes": null,
+      "managedOutboundIPs": {
+        "count": 1,
+        "countIpv6": null
+      },
+      "outboundIPs": null,
+      "outboundIpPrefixes": null
+    },
+    "loadBalancerSku": "Standard",
+    "natGatewayProfile": null,
+    "networkDataplane": "azure",
+    "networkMode": null,
+    "networkPlugin": "azure",
+    "networkPluginMode": null,
+    "networkPolicy": "calico",
+    "outboundType": "loadBalancer",
+    "podCidr": null,
+    "podCidrs": null,
+    "serviceCidr": "10.0.0.0/16",
+    "serviceCidrs": [
+      "10.0.0.0/16"
+    ]
+  },
+  "nodeResourceGroup": "MC_rg-cbd-preprod-new_cbdpreprodaks_eastus2",
+  "oidcIssuerProfile": {
+    "enabled": true,
+    "issuerUrl": "https://eastus2.oic.prod-aks.azure.com/61c32f10-2c7a-499a-bf3b-cb9b2c63cd93/e2dc8240-dbf2-46b2-8193-0ca8c007fb40/"
+  },
+  "podIdentityProfile": null,
+  "powerState": {
+    "code": "Running"
+  },
+  "privateFqdn": null,
+  "privateLinkResources": null,
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": null,
+  "resourceGroup": "rg-cbd-preprod-new",
+  "resourceUid": "67e15cb5bfbfa500011045ac",
+  "securityProfile": {
+    "azureKeyVaultKms": null,
+    "defender": null,
+    "imageCleaner": {
+      "enabled": false,
+      "intervalHours": 168
+    },
+    "workloadIdentity": {
+      "enabled": false
+    }
+  },
+  "serviceMeshProfile": null,
+  "servicePrincipalProfile": {
+    "clientId": "msi",
+    "secret": null
+  },
+  "sku": {
+    "name": "Base",
+    "tier": "Free"
+  },
+  "storageProfile": {
+    "blobCsiDriver": null,
+    "diskCsiDriver": {
+      "enabled": true
+    },
+    "fileCsiDriver": {
+      "enabled": true
+    },
+    "snapshotController": {
+      "enabled": true
+    }
+  },
+  "supportPlan": "KubernetesOfficial",
+  "systemData": null,
+  "tags": {
+    "Customer": "CBD",
+    "Customer Type": "On-prem",
+    "Department": "Prod Support",
+    "Environment": "Preprod",
+    "Stream": "Volpay2x",
+    "Ticket": "ITC0145019"
+  },
+  "type": "Microsoft.ContainerService/ManagedClusters",
+  "upgradeSettings": null,
+  "windowsProfile": {
+    "adminPassword": null,
+    "adminUsername": "azureuser",
+    "enableCsiProxy": true,
+    "gmsaProfile": null,
+    "licenseType": null
+  },
+  "workloadAutoScalerProfile": {
+    "keda": null,
+    "verticalPodAutoscaler": null
+  }
+}
+root@paashubansivm1:~# helm install cbdpreprodaks ingress-nginx/ingress-nginx --namespace ingress-basic --set controller.replicaCount=2 --set controller.nodeSelector."kubernetes\.io/os"=linux --set controller.service.externalTrafficPolicy=Local --set controller.service.loadBalancerIP="10.50.42.250" --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux --set controller.image.registry=vp3xcononprodacr1.azurecr.io --set controller.image.image=ingress-nginx/controller --set controller.image.tag=v1.9.4 --set controller.image.digest="" --set-string controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-internal"="true" --set controller.admissionWebhooks.patch.nodeSelector."kubernetes\.io/os"=linux --set controller.admissionWebhooks.patch.image.registry=vp3xcononprodacr1.azurecr.io --set controller.admissionWebhooks.patch.image.image=ingress-nginx/kube-webhook-certgen --set controller.admissionWebhooks.patch.image.tag=v20230407 --set controller.admissionWebhooks.patch.image.digest=""
+Error: INSTALLATION FAILED: create: failed to create: namespaces "ingress-basic" not found
+root@paashubansivm1:~# kubectl create namespace ingress-basic
+namespace/ingress-basic created
+root@paashubansivm1:~# helm install cbdpreprodaks ingress-nginx/ingress-nginx --namespace ingress-basic --set controller.replicaCount=2 --set controller.nodeSelector."kubernetes\.io/os"=linux --set controller.service.externalTrafficPolicy=Local --set controller.service.loadBalancerIP="10.50.42.250" --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux --set controller.image.registry=vp3xcononprodacr1.azurecr.io --set controller.image.image=ingress-nginx/controller --set controller.image.tag=v1.9.4 --set controller.image.digest="" --set-string controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-internal"="true" --set controller.admissionWebhooks.patch.nodeSelector."kubernetes\.io/os"=linux --set controller.admissionWebhooks.patch.image.registry=vp3xcononprodacr1.azurecr.io --set controller.admissionWebhooks.patch.image.image=ingress-nginx/kube-webhook-certgen --set controller.admissionWebhooks.patch.image.tag=v20230407 --set controller.admissionWebhooks.patch.image.digest=""
+NAME: cbdpreprodaks
+LAST DEPLOYED: Thu May  8 14:06:23 2025
+NAMESPACE: ingress-basic
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+The ingress-nginx controller has been installed.
+It may take a few minutes for the load balancer IP to be available.
+You can watch the status by running 'kubectl get service --namespace ingress-basic cbdpreprodaks-ingress-nginx-controller --output wide --watch'
+
+An example Ingress that makes use of the controller:
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    name: example
+    namespace: foo
+  spec:
+    ingressClassName: nginx
+    rules:
+      - host: www.example.com
+        http:
+          paths:
+            - pathType: Prefix
+              backend:
+                service:
+                  name: exampleService
+                  port:
+                    number: 80
+              path: /
+    # This section is only required if TLS is to be enabled for the Ingress
+    tls:
+      - hosts:
+        - www.example.com
+        secretName: example-tls
+
+If TLS is enabled for the Ingress, a Secret containing the certificate and key must also be provided:
+
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: example-tls
+    namespace: foo
+  data:
+    tls.crt: <base64 encoded cert>
+    tls.key: <base64 encoded key>
+  type: kubernetes.io/tls
+root@paashubansivm1:~# kubectl get service --namespace ingress-basic cbdpreprodaks-ingress-nginx-controller --output wide --watch
+NAME                                     TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE   SELECTOR
+cbdpreprodaks-ingress-nginx-controller   LoadBalancer   10.0.46.173   <pending>     80:32200/TCP,443:30211/TCP   61s   app.kubernetes.io/component=controller,app.kubernetes.io/instance=cbdpreprodaks,app.kubernetes.io/name=ingress-nginx
+cbdpreprodaks-ingress-nginx-controller   LoadBalancer   10.0.46.173   10.50.42.250   80:32200/TCP,443:30211/TCP   67s   app.kubernetes.io/component=controller,app.kubernetes.io/instance=cbdpreprodaks,app.kubernetes.io/name=ingress-nginx
+
+
+
+^Croot@paashubansivm1:~# kubectl get service --namespace ingress-basic cbdpreprodaks-ingress-nginx-controller --output wide --watch
+NAME                                     TYPE           CLUSTER-IP    EXTERNAL-IP    PORT(S)                      AGE     SELECTOR
+cbdpreprodaks-ingress-nginx-controller   LoadBalancer   10.0.46.173   10.50.42.250   80:32200/TCP,443:30211/TCP   2m22s   app.kubernetes.io/component=controller,app.kubernetes.io/instance=cbdpreprodaks,app.kubernetes.io/name=ingress-nginx
+
+^Croot@paashubansivm1:~# kubectl get svc -A
+NAMESPACE       NAME                                               TYPE           CLUSTER-IP     EXTERNAL-IP    PORT(S)                      AGE
+calico-system   calico-kube-controllers-metrics                    ClusterIP      None           <none>         9094/TCP                     45d
+calico-system   calico-typha                                       ClusterIP      10.0.100.82    <none>         5473/TCP                     45d
+default         kubernetes                                         ClusterIP      10.0.0.1       <none>         443/TCP                      45d
+ingress-basic   cbdpreprodaks-ingress-nginx-controller             LoadBalancer   10.0.46.173    10.50.42.250   80:32200/TCP,443:30211/TCP   2m29s
+ingress-basic   cbdpreprodaks-ingress-nginx-controller-admission   ClusterIP      10.0.123.250   <none>         443/TCP                      2m29s
+kube-system     ama-metrics-ksm                                    ClusterIP      10.0.195.117   <none>         8080/TCP                     45d
+kube-system     ama-metrics-operator-targets                       ClusterIP      10.0.52.87     <none>         80/TCP                       45d
+kube-system     kube-dns                                           ClusterIP      10.0.0.10      <none>         53/UDP,53/TCP                45d
+kube-system     metrics-server                                     ClusterIP      10.0.126.178   <none>         443/TCP                      45d
+kube-system     network-observability                              ClusterIP      10.0.54.123    <none>         10093/TCP                    45d
+root@paashubansivm1:~# kubectl edit svc cbdpreprodaks-ingress-nginx-controller -n ingress-basic
+service/cbdpreprodaks-ingress-nginx-controller edited
+root@paashubansivm1:~# kubectl edit svc cbdpreprodaks-ingress-nginx-controller -n ingress-basic
+Edit cancelled, no changes made.
+root@paashubansivm1:~# ls -lrth
+total 1.3G
+-rw-r--r-- 1 root root 4.8K Jun 25  2023  README.md
+-rw-r--r-- 1 root root  12K Jun 25  2023  LICENSE
+-rw-r--r-- 1 root root 9.5M Jun 25  2023  kubelogin_linux_amd64.zip
+-rw-r--r-- 1 root root 150M Dec 19  2023  jdk-17_linux-x64_bin.deb
+drwx------ 5 root root 4.0K May 14  2024  snap
+drwxr-xr-x 2 3434 3434 4.0K May 28  2024  linux-amd64
+-rwx------ 1 root root  12K May 28  2024  get_helm.sh
+-rwxr-xr-x 1 root root  368 May 29  2024  vp3x.yml
+-rw-r--r-- 1 root root  25K Jun  3  2024  test.zip
+drwxr-xr-x 3 root root 4.0K Jun  3  2024  test
+-rw-r--r-- 1 root root 4.7K Jun  4  2024  capture.cap
+-rw-r--r-- 1 root root 9.0K Jun 13  2024  template.xlsx
+-rw-r--r-- 1 root root  205 Jun 24  2024  cluster-autoscaler-priority-expander.yaml
+-rw-r--r-- 1 root root 5.6K Jun 24  2024  daemonset.yaml
+drwxr-xr-x 3 root root 4.0K Jun 25  2024  kubectl-aliases
+-rw-r--r-- 1 root root 3.5K Jul 29  2024  pod.yaml
+-rw-r--r-- 1 root root  713 Jul 29  2024  aks-command.yaml
+-rw-r--r-- 1 root root 2.1K Jul 29  2024  aks-command-job.yaml
+-rw-r--r-- 1 root root  124 Aug  5  2024  ns.yml
+-rwxr-xr-x 1 root root  364 Aug  5  2024  vp3xco1.yaml
+-rwxr-xr-x 1 root root  394 Aug  7  2024  vp3xing.yaml
+-rw-r--r-- 1 root root  657 Aug 16  2024  test-values.yaml
+-rw-r--r-- 1 root root  706 Aug 16  2024  rbc-dev-values.yaml
+-rw-r--r-- 1 root root 2.4K Aug 22  2024  pdp_backup.yaml
+-rw-r--r-- 1 root root 1010 Aug 22  2024  pdp1_backup.yaml
+drwxr-xr-x 2 root root 4.0K Aug 26  2024  volante-cert
+drwxr-xr-x 2 root root 4.0K Sep  3  2024  rbc-ach-qa
+-rw-r--r-- 1 root root  667 Sep  3  2024  rbc-preprod-values.yaml
+-rw-r--r-- 1 root root  197 Sep  3  2024  second-ingress.yaml
+-rw-r--r-- 1 root root  549 Sep  5  2024  current-values.yaml
+-rw-r--r-- 1 root root  549 Sep  5  2024  current-values1.yaml
+-rw-r--r-- 1 root root  668 Sep  5  2024  ika-sit-values.yaml
+-rw-r--r-- 1 root root  714 Sep  9  2024  scb-sepa-sit-values.yaml
+-rw-r--r-- 1 root root  560 Sep  9  2024  scbs-newrelic-values.yaml
+-rw-r--r-- 1 root root  668 Sep 12  2024  ika-uat-values.yaml
+-rw-r--r-- 1 root root 1.2K Sep 12  2024  ika-uatn-values.yaml
+-rw-r--r-- 1 root root  679 Sep 12  2024  ssb-sit-values.yaml
+-rw-r--r-- 1 root root  549 Sep 12  2024  ssb-sitn-values.yaml
+-rw-r--r-- 1 root root  706 Sep 15  2024  evl-sit-values.yaml
+-rw-r--r-- 1 root root  678 Sep 18  2024  ivt-sit-values.yaml
+-rw-r--r-- 1 root root 1.2K Sep 18  2024  ivtsit-newrelic-values.yaml
+-rw-r--r-- 1 root root  713 Sep 18  2024  scb-uat-values.yaml
+-rw-r--r-- 1 root root  668 Sep 19  2024  ssb-uat-values.yaml
+-rw-r--r-- 1 root root  550 Sep 19  2024  ssb-newrelic-values.yaml
+-rw-r--r-- 1 root root  706 Sep 20  2024  evl-uat-values.yaml
+-rw-r--r-- 1 root root  550 Sep 20  2024  evl-newrelic-values.yaml
+-rw-r--r-- 1 root root  452 Sep 24  2024  scbs-uat-newrelic-values.yaml
+-rw-r--r-- 1 root root  699 Sep 24  2024  ivt-uat-values.yaml
+-rw-r--r-- 1 root root  251 Sep 24  2024  ivt-uat-newrelic-values.yaml
+-rw-r--r-- 1 root root  670 Sep 25  2024  lsbnprd-values.yaml
+-rw-r--r-- 1 root root  395 Sep 25  2024  lsbnprd-newrelic-values.yaml
+-rw-r--r-- 1 root root  344 Sep 27  2024  cbding.yaml
+-rw-r--r-- 1 root root  646 Sep 27  2024  newrelicbundl.yaml
+-rw-r--r-- 1 root root  450 Oct  1  2024  ivtuat2-newrelic-values.yaml
+drwxr-xr-x 2 root root 4.0K Oct  1  2024  ivtuat2ing
+-rw-r--r-- 1 root root  680 Oct  1  2024  ivtuat2-ing-values.yaml
+-rwxr-xr-x 1 root root  396 Oct  3  2024  usaa-preprd-ing.yaml
+-rw-r--r-- 1 root root  327 Oct  8  2024  service.yaml
+-rwxr-xr-x 1 root root  39K Oct 15  2024  resource-count-azure-v2.py
+-rw-r--r-- 1 root root  560 Oct 17  2024  scb-sitn-values.yaml
+-rw-r--r-- 1 root root  832 Oct 22  2024  azure-errors-log.txt
+-rw-r--r-- 1 root root  423 Oct 22  2024  azure-resources-log.csv
+-rw-r--r-- 1 root root  272 Oct 22  2024  azure-resources.csv
+-rw-r--r-- 1 root root 1.4K Oct 22  2024  ssb-ingress-backup-service.yaml
+-rw-r--r-- 1 root root 1.9K Oct 22  2024  ssb-backup-ingress.yaml
+-rw-r--r-- 1 root root 4.3K Oct 22  2024  ssb-ingress-bak.yaml
+-rwxr-xr-x 1 root root  367 Oct 23  2024  ssbpreprding.yaml
+-rw-r--r-- 1 root root  668 Oct 27  2024  ssbprd-ing-values.yaml
+-rw-r--r-- 1 root root  657 Oct 27  2024  evlprd-ing-values.yaml
+-rwxr-xr-x 1 root root  310 Oct 30  2024  test.ps1
+-rw-r--r-- 1 root root  668 Nov 10 05:48  ika-prd-values.yaml
+-rw-r--r-- 1 root root  699 Nov 16 17:49  ivt-prd-values.yaml
+-rw-r--r-- 1 root root  700 Nov 17 02:06  scb-sepaprd-values.yaml
+-rwxr-xr-x 1 root root  368 Nov 18 11:48  aks-es-nonprd.yaml
+-rw-r--r-- 1 root root  257 Nov 18 12:11  namespace-qouta.yaml
+-rw-r--r-- 1 root root 929M Dec 13 16:31  9.2.0-IBM-MQ-LinuxX64-FP0030.tar.gz
+-rw-r--r-- 1 root root 3.3K Dec 19 10:13  guestbook-all-in-one.yaml
+-rw-r--r-- 1 root root 1.6K Jan 10 08:38 'ingress (2).yaml'
+-rw-r--r-- 1 root root 1.6K Jan 10 08:47  fedwireingress.yaml
+-rw-r--r-- 1 root root 1.5K Jan 10 09:16  fedingnew.yaml
+-rwxr-xr-x 1 root root  363 Jan 10 09:46  ingress1.yml
+-rw-r--r-- 1 root root 5.2K Feb  6 11:00 '1!'
+-rw-r--r-- 1 root root  407 Feb 11 16:30  Deploy.yaml
+-rw-r--r-- 1 root root 1.2K Feb 17 11:50  cbd_bkp_17022025.yaml
+-rw-r--r-- 1 root root 1.2K Feb 17 12:45  cbd.yaml
+-rw-r--r-- 1 root root 1.4K Feb 18 08:29  testingress.yaml
+-rw-r--r-- 1 root root  460 Feb 20 08:28  corrnft.yaml
+-rw-r--r-- 1 root root  460 Feb 20 08:29  azure-file-pv.yaml
+-rw-r--r-- 1 root root  196 Feb 20 08:30  azure-file-pvc.yaml
+-rw-r--r-- 1 root root 1.1K Mar 27 09:41  newrelic-updated.yaml
+-rw-r--r-- 1 root root  410 Apr  2 11:03  test.yaml
+-rwxr-xr-x 1 root root 220M Apr  4 05:36  openlogic-openjdk-11.0.26+4-linux-x64.tar.gz
+-rwxr-xr-x 1 root root  369 Apr  9 09:25  ingress1_rbcachnftaks.yml
+-rw-r--r-- 1 root root   68 Apr 24 04:05  ikasit-ingress.yaml
+-rw-r--r-- 1 root root   68 Apr 29 20:12  ika-uat-ingress.yaml
+-rw-r--r-- 1 root root   68 Apr 29 20:54  evl-sit-ingress.yaml
+-rw-r--r-- 1 root root 6.0K Apr 30 18:30  scb-sepa-ingress-backup.yaml
+-rw-r--r-- 1 root root 6.0K Apr 30 19:44  ika-uat-ingress-backup.yaml
+-rw-r--r-- 1 root root 6.8K May  2 20:39  ivt-sit-ingress.yaml
+-rw-r--r-- 1 root root  48K May  3 01:10  values.yaml
+-rw-r--r-- 1 root root 7.0K May  6 09:17  cmb-uat-ingress-backup.yaml
+root@paashubansivm1:~# cp -rp ingress1
+ingress1_rbcachnftaks.yml  ingress1.yml               
+root@paashubansivm1:~# cp -rp ingress1.yml ingress1_cbdpreprdaks.yml
+root@paashubansivm1:~# vi ingress1_cbdpreprdaks.yml
+root@paashubansivm1:~# cat ingress1_cbdpreprdaks.yml 
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cbdpreprodaks-ingress
+  annotations:  
+    kubernetes.io/ingress.class: nginx     
+spec:
+  rules:
+  - host:
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ingress-service
+            port:
+              number: 8080
+root@paashubansivm1:~# kubectl apply -f ingress1_cbdpreprdaks.yml
+Warning: annotation "kubernetes.io/ingress.class" is deprecated, please use 'spec.ingressClassName' instead
+ingress.networking.k8s.io/cbdpreprodaks-ingress created
+root@paashubansivm1:~# kubectl get ing -A
+NAMESPACE   NAME                    CLASS    HOSTS   ADDRESS   PORTS   AGE
+default     cbdpreprodaks-ingress   <none>   *                 80      29s
+root@paashubansivm1:~# kubectl get svc -A
+NAMESPACE       NAME                                               TYPE           CLUSTER-IP     EXTERNAL-IP    PORT(S)          AGE
+calico-system   calico-kube-controllers-metrics                    ClusterIP      None           <none>         9094/TCP         45d
+calico-system   calico-typha                                       ClusterIP      10.0.100.82    <none>         5473/TCP         45d
+default         kubernetes                                         ClusterIP      10.0.0.1       <none>         443/TCP          45d
+ingress-basic   cbdpreprodaks-ingress-nginx-controller             LoadBalancer   10.0.46.173    10.50.42.250   8080:32200/TCP   9m25s
+ingress-basic   cbdpreprodaks-ingress-nginx-controller-admission   ClusterIP      10.0.123.250   <none>         443/TCP          9m25s
+kube-system     ama-metrics-ksm                                    ClusterIP      10.0.195.117   <none>         8080/TCP         45d
+kube-system     ama-metrics-operator-targets                       ClusterIP      10.0.52.87     <none>         80/TCP           45d
+kube-system     kube-dns                                           ClusterIP      10.0.0.10      <none>         53/UDP,53/TCP    45d
+kube-system     metrics-server                                     ClusterIP      10.0.126.178   <none>         443/TCP          45d
+kube-system     network-observability                              ClusterIP      10.0.54.123    <none>         10093/TCP        45d
+root@paashubansivm1:~# 

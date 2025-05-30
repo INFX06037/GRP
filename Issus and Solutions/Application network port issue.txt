@@ -1,0 +1,29 @@
+AMQ Application network port issue!
+**********************************
+
+1. Check the machine status (running or not)
+*********************************************************
+2. Check the application was running or not
+ps -ef | grep activemq
+sudo systemctl status activemq
+*********************************************************
+3. Do ping and telnet with ip and port number
+telnet 10.50.171.51 8161
+*********************************************************
+4. Check inside the machine 
+netstat -an | grep 8161
+*********************************************************
+5. Allow the port in NSG
+Source: *		Destination: btpqavm1
+Port: Any port		Port: 8161
+
+Allowed dest: 10.50.171.33 - 10.50.171.62
+10.50.171.51
+*********************************************************
+6. Check how they are accessing the site
+a) Public ip or private ip
+b) Using Http or Https
+*********************************************************
+
+Solution of this issue:
+we informed the user to use http://10.50.171.51:8161 instead of 10.50.171.51:8161

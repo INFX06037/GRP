@@ -1,0 +1,13 @@
+Newly joined or old user?
+Which project?
+Which Environment?
+Which Machines name or you want teleport access?
+Check the ip in azure and find the name, project details 
+Note: Middlware servers we are not providing access?
+=========================================================
+
+Teleport
+********
+Version Check:
+bin$ ./teleport version
+

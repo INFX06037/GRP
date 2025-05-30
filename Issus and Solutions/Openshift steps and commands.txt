@@ -1,0 +1,20 @@
+
+
+Need to create seperate vnet and subnet (aro)
+Master subnet and worker subnet needed.
+redhat portal to connect 
+
+Kubeadmin: We use
+Openid: co teams and other team
+
+copy the api url name and paste in entra AD security groups
+copy the unique name and paste in appregistration and provide access
+
+2 activities
+1. Secrect renewel
+2. Cluster upgrades
+	Administration >> Cluster settings >> details >> Version
+	select thh channel >> select the version
+
+3. Compute
+	Machinesset >> nodepool >> desiredcount >> ++1

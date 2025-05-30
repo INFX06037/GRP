@@ -1,0 +1,45 @@
+File share permission issue was resolved by this commands:
+
+nslookup internalnfsshare.file.core.windows.net
+
+nc -zv internalnfsshare.file.core.windows.net 2049 0r 445
+
+telnet internalnfsshare.file.core.windows.net 2049
+
+sudo yum install cifs-utils -y
+
+sudo mount -t cifs -vvv //volindinternalfileshare.file.core.windows.net/ubsnftshare /mnt/ubsnftshare -o credentials=/etc/smbcredentials/volindinternalfileshare.cred,dir_mode=0755,file_mode=0755,vers=3.0,serverino
+
+
+***************************************************************************************************************************
+
+First: Restart the vm
+Second: Unmount the fileshare rbcpocfileshare
+Third: Try to mount it back, 
+
+sudo apt-get -y update
+
+sudo apt-get install nfs-common
+  
+sudo mkdir -p /mount/internalnfsshare/rbcnftach
+
+sudo mount -t nfs internalnfsshare.file.core.windows.net:/internalnfsshare/rbcnftach /mount/internalnfsshare/rbcnftach -o vers=4,minorversion=1,sec=sys,nconnect=4
+ 
+***************************************************************************************************************************
+if the permission issue or file share was not mounted. Run the below command.
+
+sudo mkdir -p /mnt/rbcpocfileshare
+if [ ! -d "/etc/smbcredentials" ]; then
+sudo mkdir /etc/smbcredentials
+fi
+if [ ! -f "/etc/smbcredentials/volindinternalfileshare.cred" ]; then
+    sudo bash -c 'echo "username=volindinternalfileshare" >> /etc/smbcredentials/volindinternalfileshare.cred'
+    sudo bash -c 'echo "password=D96U0p6yvZQ6wpO5EgBYT0GOpBWEYfG/7iCyhpzhfxOVCTq73ZfGYW2X+16yCC6RNPFUwgafb3BDCl5BjiMN2w==" >> /etc/smbcredentials/volindinternalfileshare.cred'
+fi
+sudo chmod 600 /etc/smbcredentials/volindinternalfileshare.cred
+ 
+sudo bash -c 'echo "//volindinternalfileshare.file.core.windows.net/rbcpocfileshare /mnt/rbcpocfileshare cifs nofail,credentials=/etc/smbcredentials/volindinternalfileshare.cred,dir_mode=0775,file_mode=0775,uid=1000,gid=1000,serverino,nosharesock,mfsymlinks,actimeo=30" >> /etc/fstab'
+sudo mount -t cifs //volindinternalfileshare.file.core.windows.net/rbcpocfileshare /mnt/rbcpocfileshare -o credentials=/etc/smbcredentials/volindinternalfileshare.cred,dir_mode=0775,file_mode=0775,uid=1000,gid=1000,serverino,nosharesock,mfsymlinks,actimeo=30
+************************************************************************************************************************
+More file share issues and solutions from Microsoft
+https://learn.microsoft.com/en-us/troubleshoot/azure/azure-storage/files/connectivity/files-troubleshoot-smb-connectivity?tabs=linux

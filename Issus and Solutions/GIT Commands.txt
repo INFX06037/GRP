@@ -1,0 +1,23 @@
+Install GIT in windows
+********************************
+Step1: 
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+Step2:
+git clone https://github.com/your-username/your-repository.git
+
+Step3: 
+cd your-repository
+
+Step4:
+git status           # See what's changed
+git add .            # Stage all changes
+git commit -m "Your commit message"  # Save the changes
+git push origin main # Push changes to GitHub (use correct branch name)
+
+Step5:
+git switch origin/main --detach
+
+Step6:
+git push origin main

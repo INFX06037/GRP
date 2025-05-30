@@ -1,0 +1,45 @@
+OS version upgrade from linux 20 to 22.0 - CHG0033020
+*******************************************
+Step 1: Need to take a snapshot of the Disks of VM.
+Step2:  Login into the server.
+Step3: execute the below commands to check current version 
+                lsb_release -a , uname -r
+Step4: Execute below command to update.
+               sudo apt install ubuntu-release-upgrader-core -y
+               - help to updae core version
+                                ( Azure VM Preinstalled with Latest - above command help you to install the core upgrade package)
+
+              sudo do-release-upgrade --check-dist-upgrade-only
+                  - Shows next avaliable version to upgrade
+
+              sudo apt update && sudo apt upgrade -y
+
+              sudo cat  /etc/update-manager/release-upgrades
+                 Check "Prompt=lts" avaliable or not else update
+
+              sudo do-release-upgrade
+                 - indcate to reboot system (manual reboot required) , reboot and execute " sudo do-release-upgrade" cmd
+
+                Press y (Cache)
+
+                Press Enter (Port) 1022 access
+
+                Press Y ( to Upgrade)
+
+                press Y ( configuration lib )
+
+                Press Enter ( Modifed configration)
+
+                Press Y ( Remove existing Package - some how many going to remove)
+
+                     - This step need to validate carefully ( remove requrired package or not)
+
+                Press Y ( Reboot the system)
+
+Step5: 
+               execute the below commands to check current version 
+                lsb_release -a , uname -r
+
+
+*******************************************
+Inform MQ team have to test and approve

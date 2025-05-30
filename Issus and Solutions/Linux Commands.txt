@@ -1,0 +1,9 @@
+uptime -g
+
+Disk Management:
+***************************************************************************************************************************
+vgs
+lsblk
+df -h
+sudo lvextend -l +100%FREE /dev/rootvg/homelv (or)
+sudo lvextend -r -l +100%FREE /dev/mapper/rootvg-rootlv
